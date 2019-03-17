@@ -6,7 +6,7 @@ Takes in Parameter "Count" at position 1, Finds the current cursor Y position, s
 
 # How to use Clear-HostLine:
 This will NOT work in the ISE.  It only work in the Console.  
-It would be best to call this from inside of a function that ONLY gets called when you are in CONSOLE, or call this only if you are in CONSOLE
+It would be best to call this from inside of a function that ONLY gets called when you are in CONSOLE, or call this only if you are in CONSOLE.  
 EXAMPLE: IF ($host.name -eq 'ConsoleHost') {Put the process to be called here}
 
 Be sure to Load up the module with:  
