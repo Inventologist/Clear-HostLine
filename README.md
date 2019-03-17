@@ -16,7 +16,7 @@ Call function when lines need to be cleared:
 Clear-HostLine -Count 3
 
 ## If you want Clear-HostLine to automatically know the number of lines to clear... Use Measure-Object:
-
+<pre><code>
 Import-Module $PathToModule\Clear-HostLine.psm1
 
 Write-Host "System Message"  
@@ -26,3 +26,39 @@ $MessageLines = ($Message | Measure-Object -Line).Lines
 start-sleep 2  
 Clear-HostLine -Count $MessageLines  
 pause  
+</code></pre>
+
+# Quirk #1
+**Description**: When using this with ScriptBlocks, be careful as to how you format them.  
+
+In the example above, if $Message was formatted as:
+<pre><code>
+$Message = {  
+Write-Host "This will be erased - Test Message"  
+}
+</code></pre>
+
+**Problem**: $Messages would be calculated as **2** Lines
+
+**Solution Example**:  
+Format the ScriptBlocks like this:
+
+If there is a Single Line in the ScriptBlock, format it like this:
+<pre><code>
+$Message = {Write-Host "This will be erased - Test Message"}
+</code></pre>
+
+If there are Multiple Lines in the ScriptBlock, format it like this:
+<pre><code>
+$Message = {Write-Host "This will be erased - Test Message"  
+            Write-Host "This will be erased - Test Message #2"}  
+</code></pre>
+
+# Quirk #2
+**Description**: You cannot use this when your cursor will end up at Y position 0  
+
+**Problem**: Program will give an error because there will be no buffer to use and calculating anything on 0 is problematic.
+
+**Solution Example**: When using this at the TOP of the screen, put a message at the top of the screen BEFORE your real message... and then delete that message line(s).  If you look at my example above, there is a line that writes " System Message" to the Console.  That line is there to prevent this error.  
+
+When I first created this, my use case was to "refesh" a prompt at the BOTTOM of the screen in my "RunMahStuff" menu system... so I never had to worry about being at the TOP of the screen.
