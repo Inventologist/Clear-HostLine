@@ -10,7 +10,19 @@ It would be best to call this from inside of a function that ONLY gets called wh
 EXAMPLE: IF ($host.name -eq 'ConsoleHost') {Put the process to be called here}
 
 Be sure to Load up the module with:  
-Import-Module PathToModule\Clear-Hostline.psm1 
+Import-Module $PathToModule\Clear-Hostline.psm1 
 
 Call function when lines need to be cleared:  
-Clear-HostLine 3
+Clear-HostLine -Count 3
+
+## If you want Clear-HostLine to automatically know the number of lines to clear... Use Measure-Object:
+
+Import-Module $PathToModule\Clear-HostLine.psm1
+
+Write-Host "System Message"
+$Message = {Write-Host "This will be erased - Test Message"}
+&$Message
+$MessageLines = ($Message | Measure-Object -Line).Lines
+start-sleep 2
+Clear-HostLine -Count $MessageLines
+pause
