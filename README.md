@@ -11,7 +11,7 @@ It would be best to call this from inside of a function that ONLY gets called wh
 EXAMPLE:
 <pre><code>
 IF ($host.name -eq 'ConsoleHost') {Put the process to be called here}
-<pre><code>
+</code></pre>
 
 ## Be sure to Load up the module with:  
 <pre><code>
