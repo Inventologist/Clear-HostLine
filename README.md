@@ -7,13 +7,21 @@ Takes in Parameter "Count" at position 1, Finds the current cursor Y position, s
 # How to use Clear-HostLine:
 This will NOT work in the ISE.  It only work in the Console.  
 It would be best to call this from inside of a function that ONLY gets called when you are in CONSOLE, or call this only if you are in CONSOLE.  
-EXAMPLE: IF ($host.name -eq 'ConsoleHost') {Put the process to be called here}
 
-Be sure to Load up the module with:  
+EXAMPLE:
+<pre><code>
+IF ($host.name -eq 'ConsoleHost') {Put the process to be called here}
+<pre><code>
+
+## Be sure to Load up the module with:  
+<pre><code>
 Import-Module $PathToModule\Clear-Hostline.psm1 
+</code></pre>
 
-Call function when lines need to be cleared:  
+## Call function when lines need to be cleared:  
+<pre><code>
 Clear-HostLine -Count 3
+</code></pre>
 
 ## If you want Clear-HostLine to automatically know the number of lines to clear... Use Measure-Object:
 <pre><code>
