@@ -19,10 +19,10 @@ Clear-HostLine -Count 3
 
 Import-Module $PathToModule\Clear-HostLine.psm1
 
-Write-Host "System Message"
-$Message = {Write-Host "This will be erased - Test Message"}
-&$Message
-$MessageLines = ($Message | Measure-Object -Line).Lines
-start-sleep 2
-Clear-HostLine -Count $MessageLines
-pause
+Write-Host "System Message"  
+$Message = {Write-Host "This will be erased - Test Message"}  
+&$Message  
+$MessageLines = ($Message | Measure-Object -Line).Lines  
+start-sleep 2  
+Clear-HostLine -Count $MessageLines  
+pause  
